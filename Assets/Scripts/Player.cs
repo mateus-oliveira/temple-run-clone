@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
     private Rigidbody rigidbody;
     private bool jumping;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float velocity;
+    
 
     void Start()
     {
@@ -25,6 +27,9 @@ public class Player : MonoBehaviour
         {
             Slide();
         }
+
+        float move = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * move * velocity * Time.deltaTime);
     }
 
     void FixedUpdate()
@@ -54,6 +59,10 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Ground"))
         {
             animator.SetBool("Jump", false);
+        }
+        if (other.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
         }
     }
 }
