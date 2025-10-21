@@ -14,6 +14,7 @@ public class GenerateGround : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        return;
         Debug.Log("Trigger Entered");
         CreateGround();
     }
